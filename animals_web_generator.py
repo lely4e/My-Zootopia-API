@@ -1,10 +1,13 @@
-import json
+import requests
 
 
-def load_data(file_path):
-    """ Loads a JSON file """
-    with open(file_path, "r", encoding="utf-8") as handle:
-        return json.load(handle)
+def load_data(): 
+    """ Fetching data from API """
+    name = 'fox'
+    api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
+    response = requests.get(api_url, headers={'X-Api-Key': 'b4+kesU9iqd0ckcpssjDXg==yP3BD3c4OBxMBpNc'})
+    data = response.json()
+    return data
 
 
 def read_html(file_path):
@@ -38,30 +41,13 @@ def get_animal_info(data):
     for animal in data:   
         output += serialize_animal(animal) 
     return output
-            
-
-def get_skin_types(data):
-    """ Displays unique skin types from the data """
-    skin_types = set()
-    for animal in data:
-        if "skin_type" in animal["characteristics"]:
-            skin_types.add(animal["characteristics"]["skin_type"])
-    return sorted(skin_types)
 
 
-def filtered_animals(data, guess):
-    filtered_animals_data = []
-    for animal in data:
-        if guess ==  animal["characteristics"]["skin_type"].lower():
-            filtered_animals_data.append(animal)
-    return filtered_animals_data
-
-
-def new_html_data(file_path, filtered_animals_data):
+def new_html_data(file_path, animals_data): 
     """ Creating a new HTML file with the necessery information """
     with open(file_path, "w", encoding="utf-8") as handle:
         html_data = read_html("animals_template.html")
-        animals_info = get_animal_info(filtered_animals_data)
+        animals_info = get_animal_info(animals_data)
         new = html_data.replace("__REPLACE_ANIMALS_INFO__", animals_info)
         return handle.write(new)
 
@@ -80,23 +66,12 @@ def error_page(file_path):
         return handle.write(new)
     
     
-def main():
+def main(): 
     """ Main logic of the program """
-    animals_data = load_data("animals_data.json")
+    animals_data = load_data()
 
-    skin_types = get_skin_types(animals_data)
-    if skin_types:
-        print("The following skin types are available:")
-        for skin_type in skin_types:
-            print(f"- {skin_type}")
-    else:
-        print("No skin types available")
-
-    user_choice = input("Enter skin type: ").strip().lower()
-
-    suitable_animals = filtered_animals(animals_data, user_choice)
-    if suitable_animals:
-        print(new_html_data("animals.html", suitable_animals))
+    if animals_data:
+        print(new_html_data("animals.html", animals_data))
     else:
         print("Invalid skin type")
         print(error_page("animals.html"))
