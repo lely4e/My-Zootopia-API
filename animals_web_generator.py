@@ -1,9 +1,8 @@
 import requests
 
 
-def load_data(): 
+def load_data(name): 
     """ Fetching data from API """
-    name = 'fox'
     api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
     response = requests.get(api_url, headers={'X-Api-Key': 'b4+kesU9iqd0ckcpssjDXg==yP3BD3c4OBxMBpNc'})
     data = response.json()
@@ -68,13 +67,16 @@ def error_page(file_path):
     
 def main(): 
     """ Main logic of the program """
-    animals_data = load_data()
-
+    user_choice = input("Enter a name of an animal: ")
+    
+    animals_data = load_data(user_choice)
+    file_name = "animals.html"
     if animals_data:
-        print(new_html_data("animals.html", animals_data))
+        print(new_html_data(file_name, animals_data))
+        print(f"Website was successfully generated to the file {file_name}")
     else:
         print("Invalid skin type")
-        print(error_page("animals.html"))
+        print(error_page(file_name))
 
 
 if __name__ == "__main__":
