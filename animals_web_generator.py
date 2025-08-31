@@ -71,6 +71,7 @@ def main():
     
     animals_data = load_data(user_choice)
     file_name = "animals.html"
+    
     if animals_data:
         print(new_html_data(file_name, animals_data))
         print(f"Website was successfully generated to the file {file_name}")
