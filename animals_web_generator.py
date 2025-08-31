@@ -51,12 +51,12 @@ def new_html_data(file_path, animals_data):
         return handle.write(new)
 
     
-def error_page(file_path):
+def error_page(file_path, user_input):
     """ Renders an error page """
     with open(file_path, "w", encoding="utf-8") as handle:
         output = ''
         output += '<li class="cards__item">\n'
-        output += '<div class="card__title" style="margin: 10px;">Cards are not found!</div>\n'
+        output += f'<div class="card__title" style="margin: 10px;">Cards with animal "{user_input}" are not found!</div>\n'
         output += '</div>'
         output += '</li>\n'
 
@@ -76,8 +76,8 @@ def main():
         print(new_html_data(file_name, animals_data))
         print(f"Website was successfully generated to the file {file_name}")
     else:
-        print("Invalid skin type")
-        print(error_page(file_name))
+        print(f"The animal \"{user_choice}\" doesn't exist.")
+        print(error_page(file_name, user_choice))
 
 
 if __name__ == "__main__":
