@@ -49,7 +49,7 @@ API_KEY=your_api_key_here
 # 💻 How to Run
 Simply run the Python script:
 ```
-python main.py
+python animals_web_generator.py
 ```
 
 You will be prompted to enter the name of an animal:
