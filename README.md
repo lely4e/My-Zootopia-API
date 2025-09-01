@@ -4,6 +4,7 @@ If matches are found, the program automatically generates an HTML file displayin
 If no matches are found, the script still generates a user-friendly HTML page with a message stating that no animals were found.
 
 
+
 # 💡 What Problem Does It Solve?
 Manually searching for animal species and their data can be time-consuming. This tool:
 * Allows quick, structured exploration of animal data from an external API
@@ -12,11 +13,13 @@ Manually searching for animal species and their data can be time-consuming. This
 * Demonstrates secure handling of API credentials using .env files
 
 
+
 # 👥 Intended Audience
 * Python beginners learning about API consumption
 * Developers building small data-driven apps
 * Students working on projects involving animals, biology, or environmental studies
 * Anyone curious about building secure, interactive command-line tools
+
 
 
 # 🚀 Usage
@@ -28,7 +31,7 @@ Manually searching for animal species and their data can be time-consuming. This
 * Clone the repository:
 ```
 git clone https://github.com/your-username/My-Zootopia-API.git
-cd animal-info-finder
+cd My-Zootopia-API
 ```
 * Install dependencies:
 ```
@@ -40,6 +43,7 @@ API_KEY=your_api_key_here
 ```
 
 ⚠️ Do not commit your .env file — it should be added to .gitignore to keep credentials secure.
+
 
 
 # 💻 How to Run
@@ -65,6 +69,7 @@ The animal doesn't exist.
 ```
 
 
+
 # ⚙️ Configuration
 All API-related values (e.g., keys and endpoints) are stored in the .env file.
 The script uses:
@@ -72,4 +77,5 @@ The script uses:
 * dotenv for environment variable management
 * os for accessing variables securely
 * Basic HTML generation with Python string formatting or templates
+
 
