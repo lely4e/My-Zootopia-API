@@ -61,7 +61,10 @@ def error_page(file_path, user_input):
     
 def main(): 
     """ Main logic of the program """
-    user_choice = input("Enter a name of an animal: ")
+    user_choice = input("Enter a name of an animal: ").strip()
+    if user_choice == "":
+        print("Invalid choice!")
+        return
     
     animals_data = data_fetcher.fetch_data(user_choice)
     
